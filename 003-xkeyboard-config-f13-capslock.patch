@@ -1,0 +1,17 @@
+--- a/symbols/capslock	2016-10-09 06:05:52.993594042 +0200
++++ b/symbols/capslock	2016-10-09 06:05:37.633090945 +0200
+@@ -77,3 +77,14 @@
+ xkb_symbols "none" {
+     key <CAPS> { [ VoidSymbol ] };
+ };
++
++// Use caps lock as F13
++// Shift+Caps lock gives caps lock
++partial hidden function_keys
++xkb_symbols "f13" {
++    key <CAPS> {
++        type[Group1] = "TWO_LEVEL",
++        symbols[Group1] = [ F13, Caps_Lock ],
++        actions[Group1] = [ NoAction(), LockMods(modifiers=Lock) ]
++    };
++};

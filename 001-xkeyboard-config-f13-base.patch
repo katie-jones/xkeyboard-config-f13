@@ -1,0 +1,10 @@
+--- a/rules/base.o_s.part	2016-10-09 06:10:04.048483352 +0200
++++ b/rules/base.o_s.part	2016-10-09 06:10:24.079139405 +0200
+@@ -70,6 +70,7 @@
+   caps:super		=	+capslock(super)
+   caps:hyper		=	+capslock(hyper)
+   caps:none		=	+capslock(none)
++  caps:f13		=	+capslock(f13)
+   caps:ctrl_modifier	=	+capslock(ctrl_modifier)
+   ctrl:nocaps		=	+ctrl(nocaps)
+   ctrl:lctrl_meta	=	+ctrl(lctrl_meta)
