@@ -12,9 +12,9 @@ arch=(any)
 license=('custom')
 url="http://www.freedesktop.org/wiki/Software/XKeyboardConfig"
 makedepends=('intltool' 'xorg-xkbcomp')
-provides=('xkbdata', 'xkeyboard-config')
+provides=('xkbdata' 'xkeyboard-config')
 replaces=('xkbdata')
-conflicts=('xkbdata', 'xkeyboard-config')
+conflicts=('xkbdata' 'xkeyboard-config')
 source=(http://xorg.freedesktop.org/archive/individual/data/${_pkgname}/${_pkgname}-${pkgver}.tar.bz2
         001-xkeyboard-config-f13-base.patch
         002-xkeyboard-config-f13-evdev.patch
