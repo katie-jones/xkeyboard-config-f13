@@ -12,5 +12,3 @@ The option can be activated using the xkb command line syntax: `setxkbmap -optio
 
 For users of the Deepin desktop environment the option can be activated by adding the option 'caps:f13' to the key _com.deepin.dde.keyboard layout-options_.
 For the GNOME desktop environment, the relevant key is _org.gnome.libgnomekbd.keyboard options_.
-
-

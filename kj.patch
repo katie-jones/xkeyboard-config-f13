@@ -1,0 +1,172 @@
+diff -urN xkeyboard-config-2.28/rules/base.extras.xml xkeyboard-config-2.28-new/rules/base.extras.xml
+--- xkeyboard-config-2.28/rules/base.extras.xml	2019-10-19 22:52:38.000000000 +0200
++++ xkeyboard-config-2.28-new/rules/base.extras.xml	2019-12-14 12:32:50.522398720 +0100
+@@ -452,6 +452,12 @@
+             </languageList>
+           </configItem>
+         </variant>
++        <variant>
++          <configItem>
++            <name>kj</name>
++            <description>English (KJ)</description>
++          </configItem>
++        </variant>
+       </variantList>
+     </layout>
+     <layout>
+diff -urN xkeyboard-config-2.28/rules/base.o_s.part xkeyboard-config-2.28-new/rules/base.o_s.part
+--- xkeyboard-config-2.28/rules/base.o_s.part	2019-10-19 22:52:38.000000000 +0200
++++ xkeyboard-config-2.28-new/rules/base.o_s.part	2019-12-14 12:48:00.513738659 +0100
+@@ -79,6 +79,7 @@
+   caps:hyper		=	+capslock(hyper)
+   caps:menu		=	+capslock(menu)
+   caps:none		=	+capslock(none)
++  caps:f13		=	+capslock(f13)
+   caps:ctrl_modifier	=	+capslock(ctrl_modifier)
+   ctrl:nocaps		=	+ctrl(nocaps)
+   ctrl:lctrl_meta	=	+ctrl(lctrl_meta)
+diff -urN xkeyboard-config-2.28/rules/base.xml xkeyboard-config-2.28-new/rules/base.xml
+--- xkeyboard-config-2.28/rules/base.xml	2019-10-19 22:52:38.000000000 +0200
++++ xkeyboard-config-2.28-new/rules/base.xml	2019-12-14 12:55:34.818952091 +0100
+@@ -6923,6 +6923,12 @@
+       </option>
+       <option>
+         <configItem>
++          <name>caps:f13</name>
++          <description>Make Caps Lock behave as an F13 key, but Shift + Caps Lock behave like regular Caps Lock</description>
++        </configItem>
++      </option>
++      <option>
++        <configItem>
+           <name>caps:backspace</name>
+           <description>Make Caps Lock an additional Backspace</description>
+         </configItem>
+diff -urN xkeyboard-config-2.28/rules/evdev.extras.xml xkeyboard-config-2.28-new/rules/evdev.extras.xml
+--- xkeyboard-config-2.28/rules/evdev.extras.xml	2019-10-19 22:52:51.000000000 +0200
++++ xkeyboard-config-2.28-new/rules/evdev.extras.xml	2019-12-14 12:32:11.632886929 +0100
+@@ -192,7 +192,7 @@
+             </languageList>
+           </configItem>
+         </variant>
+-	<variant>
++    	<variant>
+           <configItem>
+             <name>lld</name>
+             <description>German Ladin</description>
+@@ -452,6 +452,12 @@
+             </languageList>
+           </configItem>
+         </variant>
++        <variant>
++          <configItem>
++            <name>kj</name>
++            <description>English (KJ)</description>
++          </configItem>
++        </variant>
+       </variantList>
+     </layout>
+     <layout>
+diff -urN xkeyboard-config-2.28/rules/evdev.xml xkeyboard-config-2.28-new/rules/evdev.xml
+--- xkeyboard-config-2.28/rules/evdev.xml	2019-10-19 22:52:51.000000000 +0200
++++ xkeyboard-config-2.28-new/rules/evdev.xml	2019-12-14 12:56:40.512146960 +0100
+@@ -6923,6 +6923,12 @@
+       </option>
+       <option>
+         <configItem>
++          <name>caps:f13</name>
++          <description>Make Caps Lock behave as an F13 key, but Shift + Caps Lock behave like regular Caps Lock</description>
++        </configItem>
++      </option>
++      <option>
++        <configItem>
+           <name>caps:backspace</name>
+           <description>Make Caps Lock an additional Backspace</description>
+         </configItem>
+diff -urN xkeyboard-config-2.28/symbols/capslock xkeyboard-config-2.28-new/symbols/capslock
+--- xkeyboard-config-2.28/symbols/capslock	2019-10-19 22:52:38.000000000 +0200
++++ xkeyboard-config-2.28-new/symbols/capslock	2019-12-14 12:56:05.385465043 +0100
+@@ -86,3 +86,14 @@
+ xkb_symbols "none" {
+     key <CAPS> { [ VoidSymbol ] };
+ };
++
++// Use caps lock as F13
++// Shift+Caps lock gives caps lock
++partial hidden function_keys
++xkb_symbols "f13" {
++    key <CAPS> {
++        type[Group1] = "TWO_LEVEL",
++        symbols[Group1] = [ F13, Caps_Lock ],
++        actions[Group1] = [ NoAction(), LockMods(modifiers=Lock) ]
++    };
++};
+diff -urN xkeyboard-config-2.28/symbols/us xkeyboard-config-2.28-new/symbols/us
+--- xkeyboard-config-2.28/symbols/us	2019-10-19 22:52:38.000000000 +0200
++++ xkeyboard-config-2.28-new/symbols/us	2019-12-14 12:41:55.960113331 +0100
+@@ -1886,3 +1886,66 @@
+         symbols[Group1] = [ Tab ]
+     };
+ };
++
++partial alphanumeric_keys
++xkb_symbols "kj" {
++
++    name[Group1]= "English (KJ)";
++
++    key <TLDE> {	[     grave,	asciitilde, degree, degree	]	};
++    key <AE01> {	[	  1,	exclam, NoSymbol, NoSymbol 		]	};
++    key <AE02> {	[	  2,	at, doublelowquotemark, doublelowquotemark		]	};
++    key <AE03> {	[	  3,	numbersign, section, section	]	};
++    key <AE04> {	[	  4,	dollar, NoSymbol, NoSymbol		]	};
++    key <AE05> {	[	  5,	percent, NoSymbol, NoSymbol		]	};
++    key <AE06> {	[	  6,	asciicircum, NoSymbol, NoSymbol	]	};
++    key <AE07> {	[	  7,	ampersand, NoSymbol, NoSymbol	]	};
++    key <AE08> {	[	  8,	asterisk, NoSymbol, NoSymbol	]	};
++    key <AE09> {	[	  9,	parenleft, NoSymbol, NoSymbol	]	};
++    key <AE10> {	[	  0,	parenright, NoSymbol, NoSymbol	]	};
++    key <AE11> {	[     minus,	underscore, ssharp, ssharp	]	};
++    key <AE12> {	[     equal,	plus, NoSymbol, NoSymbol		]	};
++
++    key <AD01> {	[	  q,	Q, NoSymbol, NoSymbol 		]	};
++    key <AD02> {	[	  w,	W, NoSymbol, NoSymbol		]	};
++    key <AD03> {	[         e,    E, EuroSign, EuroSign		]	};
++    key <AD04> {	[	  r,	R, NoSymbol, NoSymbol		]	};
++    key <AD05> {	[	  t,	T, NoSymbol, NoSymbol		]	};
++    key <AD06> {	[	  y,	Y, NoSymbol, NoSymbol		]	};
++    key <AD07> {	[	  u,	U, NoSymbol, NoSymbol		]	};
++    key <AD08> {	[	  i,	I, NoSymbol, NoSymbol		]	};
++    key <AD09> {	[	  o,	O, NoSymbol, NoSymbol		]	};
++    key <AD10> {	[	  p,	P, NoSymbol, NoSymbol		]	};
++    key <AD11> {	[ bracketleft,	braceleft, udiaeresis, Udiaeresis	]	};
++    key <AD12> {	[ bracketright,	braceright, dead_circumflex, dead_diaeresis	]	};
++
++    key <AC01> {	[	  a,	A, NoSymbol, NoSymbol 		]	};
++    key <AC02> {	[	  s,	S, NoSymbol, NoSymbol		]	};
++    key <AC03> {	[	  d,	D, NoSymbol, NoSymbol		]	};
++    key <AC04> {	[	  f,	F, NoSymbol, NoSymbol		]	};
++    key <AC05> {	[	  g,	G, NoSymbol, NoSymbol		]	};
++    key <AC06> {	[	  h,	H, NoSymbol, NoSymbol		]	};
++    key <AC07> {	[	  j,	J, NoSymbol, NoSymbol		]	};
++    key <AC08> {	[	  k,	K, NoSymbol, NoSymbol		]	};
++    key <AC09> {	[	  l,	L, NoSymbol, NoSymbol		]	};
++    key <AC10> {	[ semicolon,	colon, odiaeresis, Odiaeresis		]	};
++    key <AC11> {	[ apostrophe,	quotedbl, adiaeresis, Adiaeresis	]	};
++
++    key <AB01> {	[	  z,	Z, NoSymbol, NoSymbol 		]	};
++    key <AB02> {	[	  x,	X, NoSymbol, NoSymbol		]	};
++    key <AB03> {	[	  c,	C, ccedilla, Ccedilla		]	};
++    key <AB04> {	[	  v,	V, NoSymbol, NoSymbol		]	};
++    key <AB05> {	[	  b,	B, NoSymbol, NoSymbol		]	};
++    key <AB06> {	[	  n,	N, ntilde, Ntilde		]	};
++    key <AB07> {	[	  m,	M, NoSymbol, NoSymbol		]	};
++    key <AB08> {	[     comma,	less, eacute, Eacute		]	};
++    key <AB09> {	[    period,	greater, egrave, Egrave		]	};
++    key <AB10> {	[     slash,	question, agrave, Agrave	]	};
++
++    key <BKSL> {	[ backslash,         bar, ae, AE	]	};
++
++    include "level3(lwin_switch)"
++    include "altwin(swap_alt_win)"
++    include "capslock(f13)"
++    include "group(win_space_toggle)"
++};
