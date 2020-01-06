@@ -165,8 +165,8 @@ diff -urN xkeyboard-config-2.28/symbols/us xkeyboard-config-2.28-new/symbols/us
 +
 +    key <BKSL> {	[ backslash,         bar, ae, AE	]	};
 +
-+    include "level3(lwin_switch)"
 +    include "altwin(swap_alt_win)"
++    include "level3(lwin_switch)"
 +    include "capslock(f13)"
 +    include "group(win_space_toggle)"
 +};
