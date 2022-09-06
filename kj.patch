@@ -133,7 +133,7 @@ diff -urN xkeyboard-config-2.28/symbols/us xkeyboard-config-2.28-new/symbols/us
 +    key <AD04> {	[	  r,	R, NoSymbol, NoSymbol		]	};
 +    key <AD05> {	[	  t,	T, NoSymbol, NoSymbol		]	};
 +    key <AD06> {	[	  y,	Y, NoSymbol, NoSymbol		]	};
-+    key <AD07> {	[	  u,	U, NoSymbol, NoSymbol		]	};
++    key <AD07> {	[	  u,	U, ugrave, Ugrave		]	};
 +    key <AD08> {	[	  i,	I, NoSymbol, NoSymbol		]	};
 +    key <AD09> {	[	  o,	O, NoSymbol, NoSymbol		]	};
 +    key <AD10> {	[	  p,	P, NoSymbol, NoSymbol		]	};
