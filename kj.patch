@@ -1,17 +1,6 @@
-diff -ur xkeyboard-config-2.36/rules/0042-o_s.part xkeyboard-config-2.36-new/rules/0042-o_s.part
---- xkeyboard-config-2.36/rules/0042-o_s.part	2022-06-02 00:44:25.000000000 +0200
-+++ xkeyboard-config-2.36-new/rules/0042-o_s.part	2022-09-06 11:36:41.986652571 +0200
-@@ -77,6 +77,7 @@
-   caps:hyper		=	+capslock(hyper)
-   caps:menu		=	+capslock(menu)
-   caps:none		=	+capslock(none)
-+  caps:f13		=	+capslock(f13)
-   caps:ctrl_modifier	=	+capslock(ctrl_modifier)
-   ctrl:nocaps		=	+ctrl(nocaps)
-   ctrl:lctrl_meta	=	+ctrl(lctrl_meta)
-diff -ur xkeyboard-config-2.36/rules/base.extras.xml xkeyboard-config-2.36-new/rules/base.extras.xml
---- xkeyboard-config-2.36/rules/base.extras.xml	2022-06-02 00:44:25.000000000 +0200
-+++ xkeyboard-config-2.36-new/rules/base.extras.xml	2022-09-06 11:35:53.207074423 +0200
+diff -ur xkeyboard-config-2.42/rules/base.extras.xml xkeyboard-config-2.42-new/rules/base.extras.xml
+--- xkeyboard-config-2.42/rules/base.extras.xml	2022-06-02 00:44:25.000000000 +0200
++++ xkeyboard-config-2.42-new/rules/base.extras.xml	2022-09-06 11:35:53.207074423 +0200
 @@ -396,6 +396,12 @@
        <variantList>
          <variant>
@@ -25,9 +14,9 @@ diff -ur xkeyboard-config-2.36/rules/base.extras.xml xkeyboard-config-2.36-new/r
              <name>intl-unicode</name>
              <description>English (US, intl., AltGr Unicode combining)</description>
            </configItem>
-diff -ur xkeyboard-config-2.36/rules/base.xml xkeyboard-config-2.36-new/rules/base.xml
---- xkeyboard-config-2.36/rules/base.xml	2022-06-02 00:44:25.000000000 +0200
-+++ xkeyboard-config-2.36-new/rules/base.xml	2022-09-06 11:37:49.272737852 +0200
+diff -ur xkeyboard-config-2.42/rules/base.xml xkeyboard-config-2.42-new/rules/base.xml
+--- xkeyboard-config-2.42/rules/base.xml	2022-06-02 00:44:25.000000000 +0200
++++ xkeyboard-config-2.42-new/rules/base.xml	2022-09-06 11:37:49.272737852 +0200
 @@ -7551,6 +7551,12 @@
            <description>Caps Lock is disabled</description>
          </configItem>
@@ -41,9 +30,9 @@ diff -ur xkeyboard-config-2.36/rules/base.xml xkeyboard-config-2.36-new/rules/ba
      </group>
      <group allowMultipleSelection="false">
        <!-- Using special PC keys (Win, Menu) to work as standard X keys (Super, Hyper, etc.) -->
-diff -ur xkeyboard-config-2.36/symbols/capslock xkeyboard-config-2.36-new/symbols/capslock
---- xkeyboard-config-2.36/symbols/capslock	2022-06-02 00:44:25.000000000 +0200
-+++ xkeyboard-config-2.36-new/symbols/capslock	2022-09-06 11:46:07.501778999 +0200
+diff -ur xkeyboard-config-2.42/symbols/capslock xkeyboard-config-2.42-new/symbols/capslock
+--- xkeyboard-config-2.42/symbols/capslock	2022-06-02 00:44:25.000000000 +0200
++++ xkeyboard-config-2.42-new/symbols/capslock	2022-09-06 11:46:07.501778999 +0200
 @@ -95,3 +95,14 @@
  xkb_symbols "none" {
      key <CAPS> { [ VoidSymbol ] };
@@ -59,9 +48,9 @@ diff -ur xkeyboard-config-2.36/symbols/capslock xkeyboard-config-2.36-new/symbol
 +        actions[Group1] = [ NoAction(), LockMods(modifiers=Lock) ]
 +    };
 +};
-diff -ur xkeyboard-config-2.36/symbols/us xkeyboard-config-2.36-new/symbols/us
---- xkeyboard-config-2.36/symbols/us	2022-06-02 00:44:25.000000000 +0200
-+++ xkeyboard-config-2.36-new/symbols/us	2022-09-06 11:46:42.801475472 +0200
+diff -ur xkeyboard-config-2.42/symbols/us xkeyboard-config-2.42-new/symbols/us
+--- xkeyboard-config-2.42/symbols/us	2022-06-02 00:44:25.000000000 +0200
++++ xkeyboard-config-2.42-new/symbols/us	2022-09-06 11:46:42.801475472 +0200
 @@ -2323,3 +2323,66 @@
  
      include "level3(ralt_switch)"
